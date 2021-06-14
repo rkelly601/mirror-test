@@ -1,0 +1,10 @@
+default:
+  image: alpine:latest
+
+stages:
+    - test
+
+Job-1
+  stage: test
+  script: 
+      - echo "hello world"
