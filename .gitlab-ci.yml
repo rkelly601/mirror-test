@@ -4,7 +4,12 @@ default:
 stages:
     - test
 
+.init_step:
+  script:
+    - echo "Init"
+
 Job-1:
   stage: test
   script: 
-      - echo "hello world"
+      - !reference [.init_step, script]
+      - echo "this is working"
