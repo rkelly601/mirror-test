@@ -4,12 +4,7 @@ default:
 stages:
     - test
 
-.init_step:
-  script:
-    - echo "Init"
-
 Job-1:
   stage: test
   script: 
-      - !reference [.init_step, script]
-      - echo "this is working"
+      - echo $CI_PIPELINE_SOURCE
