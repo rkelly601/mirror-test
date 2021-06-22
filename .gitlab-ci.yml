@@ -53,7 +53,7 @@ trigger-job:
   stage: trigger
   trigger:
     include:
-      - local: gitlab-gold/ryan-test-subgroup/label-test/test-dir/.gitlab-ci.yml
+      - local: gitlab-gold/ryan-test-subgroup/label-test/test-dir/test.yml
     strategy: depend
 
   # needs:
