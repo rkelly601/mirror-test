@@ -12,7 +12,7 @@ prebuildit:
         set -euvx
         export UPSTREAM_PROJECT="${UPSTREAM_PROJECT:-gitlab-gold/ryan-test-subgroup/label-test}"
         export UPSTREAM_REF="${UPSTREAM_REF:-${CI_COMMIT_BRANCH}}"
-        export UPSTREAM_JOB="${UPSTREAM_JOB:-buildit}"
+        export UPSTREAM_JOB="${UPSTREAM_JOB:-prebuildit}"
         tee prebuildit.env <<EOF
         UPSTREAM_PROJECT=$UPSTREAM_PROJECT
         UPSTREAM_REF=$UPSTREAM_REF
