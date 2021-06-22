@@ -32,9 +32,7 @@ prebuildit:
 buildit:
   stage: build
   needs:
-    - project: $CI_PROJECT_PATH
-      job: prebuildit
-      ref: master
+    - job: prebuildit
       artifacts: true
   script:
     - echo $DEPENDENCY_JOB_NAME
