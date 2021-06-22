@@ -6,13 +6,14 @@ stages:
 
 Job-1:
   stage: test
-  # needs:
-  #   - project: $UPSTREAM_PROJECT
-  #     ref: $UPSTREAM_REF
-  #     job: $UPSTREAM_JOB
-  #     artifacts: true
+  needs:
+    - project: $CI_PROJECT_PATH
+      ref: $ARTIFACTS_DOWNLOAD_REF
+      job: $DEPENDENCY_JOB_NAME
+      artifacts: true
   script: 
       - echo $UPSTREAM_JOB
       - echo $UPSTREAM_PROJECT
       - echo $DEPENDENCY_JOB_NAME
       - echo $ARTIFACTS_DOWNLOAD_REF
+      - echo $CI_PROJECT_PATH
