@@ -32,7 +32,7 @@ prebuildit:
 buildit:
   stage: build
   needs:
-    - job: prebuildit
+    - job: $UPSTREAM_JOB
       artifacts: true
   script:
     - echo $DEPENDENCY_JOB_NAME
