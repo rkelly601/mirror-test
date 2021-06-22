@@ -32,7 +32,7 @@ prebuildit:
 buildit:
   stage: build
   needs:
-    - job: $DEPENDENCY_JOB_NAME
+    - job: prebuildit
       artifacts: true
   script:
     - echo $DEPENDENCY_JOB_NAME
@@ -46,6 +46,7 @@ buildit:
     when: always
     paths:
       - ./*.export
+      - prebuildit.env
 
   # needs:
   #   - job: prebuildit
