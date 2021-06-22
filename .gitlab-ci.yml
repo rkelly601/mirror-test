@@ -51,8 +51,6 @@ buildit:
   
 trigger-job: 
   stage: trigger
-  script:
-    - echo "trigger downstream pipeline"
   trigger:
     include:
       - local: gitlab-gold/ryan-test-subgroup/label-test/test-dir/.gitlab-ci.yml
