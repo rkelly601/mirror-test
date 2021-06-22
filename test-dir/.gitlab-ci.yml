@@ -6,11 +6,13 @@ stages:
 
 Job-1:
   stage: test
-  needs:
-    - project: $UPSTREAM_PROJECT
-      ref: $UPSTREAM_REF
-      job: $UPSTREAM_JOB
-      artifacts: true
-  script: 
-      - echo $UPSTREAM_JOB
-      - echo $UPSTREAM_PROJECT
+  script:
+    - echo "hello world"
+  # needs:
+  #   - project: $UPSTREAM_PROJECT
+  #     ref: $UPSTREAM_REF
+  #     job: $UPSTREAM_JOB
+  #     artifacts: true
+  # script: 
+  #     - echo $UPSTREAM_JOB
+  #     - echo $UPSTREAM_PROJECT
