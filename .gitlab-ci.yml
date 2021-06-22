@@ -52,7 +52,7 @@ buildit:
 trigger-job: 
   stage: trigger
   trigger:
-    include: /gitlab-gold/ryan-test-subgroup/label-test/downstream/test.yml
+    include: gitlab-gold/ryan-test-subgroup/label-test/downstream/test.yml
 
   # needs:
   #   - job: prebuildit
