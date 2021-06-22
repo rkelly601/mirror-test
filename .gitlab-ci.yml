@@ -28,7 +28,6 @@ prebuildit:
 buildit:
   stage: build
   needs:
-    - job: prebuildit
     - project: $UPSTREAM_PROJECT
       ref: $UPSTREAM_REF
       job: $UPSTREAM_JOB
