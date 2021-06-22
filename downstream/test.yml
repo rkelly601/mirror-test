@@ -14,3 +14,5 @@ Job-1:
   script: 
       - echo $UPSTREAM_JOB
       - echo $UPSTREAM_PROJECT
+      - echo $DEPENDENCY_JOB_NAME
+      - echo $ARTIFACTS_DOWNLOAD_REF
