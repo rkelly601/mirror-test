@@ -27,11 +27,11 @@ prebuildit:
 
 buildit:
   stage: build
-  needs:
-    - project: $UPSTREAM_PROJECT
-      ref: $UPSTREAM_REF
-      job: $UPSTREAM_JOB
-      artifacts: true
+  # needs:
+  #   - project: $UPSTREAM_PROJECT
+  #     ref: $UPSTREAM_REF
+  #     job: $UPSTREAM_JOB
+  #     artifacts: true
   script:
     - echo $UPSTREAM_PROJECT
     - echo $UPSTREAM_REF
