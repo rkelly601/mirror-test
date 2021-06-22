@@ -52,9 +52,7 @@ buildit:
 trigger-job: 
   stage: trigger
   trigger:
-    include:
-      - local: gitlab-gold/ryan-test-subgroup/label-test/test-dir/test.yml
-    strategy: depend
+    include: gitlab-gold/ryan-test-subgroup/label-test/test-dir/test.yml
 
   # needs:
   #   - job: prebuildit
