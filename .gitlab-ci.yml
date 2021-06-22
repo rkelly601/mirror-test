@@ -26,6 +26,8 @@ prebuildit:
 buildit:
   stage: build
   script:
+    - echo $UPSTREAM_PROJECT
+    - echo $UPSTREAM_REF
     - echo $UPSTREAM_JOB
   # needs:
   #   - job: prebuildit
