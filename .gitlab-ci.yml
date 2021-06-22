@@ -31,6 +31,13 @@ buildit:
     - echo $UPSTREAM_PROJECT
     - echo $UPSTREAM_REF
     - echo $UPSTREAM_JOB
+    - export | tee "${CI_PROJECT_PATH_SLUG}_${CI_JOB_STAGE}_${CI_JOB_NAME}.export"
+    - ls -lah
+  artifacts:
+    when: always
+    paths:
+      - ./*.export
+
   # needs:
   #   - job: prebuildit
   #   - project: $UPSTREAM_PROJECT
