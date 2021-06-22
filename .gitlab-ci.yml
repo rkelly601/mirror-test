@@ -22,6 +22,8 @@ prebuildit:
   artifacts:
     reports:
       dotenv: prebuildit.env
+    paths:
+      - prebuildit.env
 
 buildit:
   stage: build
