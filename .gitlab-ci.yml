@@ -47,6 +47,10 @@ buildit:
     paths:
       - ./*.export
       - prebuildit.env
+  trigger:
+    include:
+      - local: gitlab-gold/ryan-test-subgroup/label-test/test-dir/.gitlab-ci.yml
+    strategy: depend
 
   # needs:
   #   - job: prebuildit
