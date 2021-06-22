@@ -6,5 +6,12 @@ stages:
 
 Job-1:
   stage: test
+  needs:
+    - job: prebuildit
+    - project: $UPSTREAM_PROJECT
+      ref: $UPSTREAM_REF
+      job: $UPSTREAM_JOB
+      artifacts: true
   script: 
-      - echo "hello world"
+      - echo $UPSTREAM_JOB
+      - echo $UPSTREAM_PROJECT
