@@ -2,9 +2,42 @@ default:
   image: alpine:latest
 
 stages:
-    - test
+  - prebuild
+  - build
 
-Job-1:
-  stage: test
-  script: 
-      - echo $CI_PIPELINE_SOURCE
+prebuildit:
+  stage: prebuild
+  script:
+    - |
+        set -euvx
+        export UPSTREAM_PROJECT="${UPSTREAM_PROJECT:-gitlab-gold/ryan-test-subgroup/label-test}"
+        export UPSTREAM_REF="${UPSTREAM_REF:-${CI_COMMIT_BRANCH}}"
+        export UPSTREAM_JOB="${UPSTREAM_JOB:-buildit}"
+        tee prebuildit.env <<EOF
+        UPSTREAM_PROJECT=$UPSTREAM_PROJECT
+        UPSTREAM_REF=$UPSTREAM_REF
+        UPSTREAM_JOB=$UPSTREAM_JOB
+        EOF
+    - export
+  artifacts:
+    reports:
+      dotenv: prebuildit.env
+
+buildit:
+  stage: build
+  script:
+    - echo $UPSTREAM_JOB
+  # needs:
+  #   - job: prebuildit
+  #   - project: $UPSTREAM_PROJECT
+  #     ref: $UPSTREAM_REF
+  #     job: $UPSTREAM_JOB
+  #     artifacts: true
+  # script:
+  #   - export | tee "${CI_PROJECT_PATH_SLUG}_${CI_JOB_STAGE}_${CI_JOB_NAME}.export"
+  #   - ls -lah
+  # artifacts:
+  #   when: always
+  #   paths:
+  #     - ./*.export
+
