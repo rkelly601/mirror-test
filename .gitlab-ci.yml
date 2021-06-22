@@ -52,7 +52,9 @@ buildit:
 trigger-job: 
   stage: trigger
   trigger:
-    include: downstream/test.yml
+    include:
+      - local: downstream/test.yml
+    strategy: depend
 
   # needs:
   #   - job: prebuildit
