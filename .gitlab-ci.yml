@@ -6,55 +6,62 @@ stages:
   - build
   - trigger
 
-variables:
-  DEPENDENCY_JOB_NAME: "prebuildit"
-  ARTIFACTS_DOWNLOAD_REF: $CI_COMMIT_BRANCH
+# variables:
+#   DEPENDENCY_JOB_NAME: "prebuildit"
+#   ARTIFACTS_DOWNLOAD_REF: $CI_COMMIT_BRANCH
 
-prebuildit:
-  stage: prebuild
-  script:
-    - |
-        set -euvx
-        export UPSTREAM_PROJECT="${UPSTREAM_PROJECT:-gitlab-gold/ryan-test-subgroup/label-test}"
-        export UPSTREAM_REF="${UPSTREAM_REF:-${CI_COMMIT_BRANCH}}"
-        export UPSTREAM_JOB="${UPSTREAM_JOB:-buildit}"
-        tee prebuildit.env <<EOF
-        UPSTREAM_PROJECT=$UPSTREAM_PROJECT
-        UPSTREAM_REF=$UPSTREAM_REF
-        UPSTREAM_JOB=$UPSTREAM_JOB
-        EOF
-    - export
-  artifacts:
-    reports:
-      dotenv: prebuildit.env
-    paths:
-      - prebuildit.env
+# prebuildit:
+#   stage: prebuild
+#   script:
+#     - |
+#         set -euvx
+#         export UPSTREAM_PROJECT="${UPSTREAM_PROJECT:-gitlab-gold/ryan-test-subgroup/label-test}"
+#         export UPSTREAM_REF="${UPSTREAM_REF:-${CI_COMMIT_BRANCH}}"
+#         export UPSTREAM_JOB="${UPSTREAM_JOB:-buildit}"
+#         tee prebuildit.env <<EOF
+#         UPSTREAM_PROJECT=$UPSTREAM_PROJECT
+#         UPSTREAM_REF=$UPSTREAM_REF
+#         UPSTREAM_JOB=$UPSTREAM_JOB
+#         EOF
+#     - export
+#   artifacts:
+#     reports:
+#       dotenv: prebuildit.env
+#     paths:
+#       - prebuildit.env
 
-buildit:
+# buildit:
+#   stage: build
+#   needs:
+#     - job: prebuildit
+#       artifacts: true
+#   script:
+#     - echo $DEPENDENCY_JOB_NAME
+#     - echo $ARTIFACTS_DOWNLOAD_REF
+#     - echo $UPSTREAM_PROJECT
+#     - echo $UPSTREAM_REF
+#     - echo $UPSTREAM_JOB
+#     - export | tee "${CI_PROJECT_PATH_SLUG}_${CI_JOB_STAGE}_${CI_JOB_NAME}.export"
+#     - ls -lah
+#   artifacts:
+#     when: always
+#     paths:
+#       - ./*.export
+#       - prebuildit.env
+
+Job-1:
   stage: build
-  needs:
-    - job: prebuildit
-      artifacts: true
   script:
-    - echo $DEPENDENCY_JOB_NAME
-    - echo $ARTIFACTS_DOWNLOAD_REF
-    - echo $UPSTREAM_PROJECT
-    - echo $UPSTREAM_REF
-    - echo $UPSTREAM_JOB
-    - export | tee "${CI_PROJECT_PATH_SLUG}_${CI_JOB_STAGE}_${CI_JOB_NAME}.export"
-    - ls -lah
-  artifacts:
-    when: always
-    paths:
-      - ./*.export
-      - prebuildit.env
-  
+    - echo "Job 1"
+
 trigger-job: 
   stage: trigger
   trigger:
     include:
       - local: downstream/test.yml
-    strategy: depend
+  rules:
+    - changes:
+      - README.md
 
   # needs:
   #   - job: prebuildit
