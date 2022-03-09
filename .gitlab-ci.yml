@@ -59,9 +59,9 @@ trigger-job:
   trigger:
     include:
       - local: downstream/test.yml
-    rules:
-      - changes:
-        - README.md
+  rules:
+    - changes:
+      - README.md
 
   # needs:
   #   - job: prebuildit
