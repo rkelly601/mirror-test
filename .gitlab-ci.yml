@@ -61,7 +61,7 @@ trigger-job:
       - local: downstream/test.yml
   rules:
     - changes:
-      - README.md
+      -  test-dir/*
 
   # needs:
   #   - job: prebuildit
