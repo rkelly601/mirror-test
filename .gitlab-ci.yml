@@ -59,7 +59,7 @@ trigger-job:
   trigger:
     include: downstream/test.yml
   only:
-    - changes:
+    changes:
       -  test-dir/*
 
   # needs:
