@@ -53,13 +53,14 @@ Job-1:
   stage: build
   script:
     - echo "$CI_PIPELINE_SOURCE"
+    - echo "CI_MERGE_REQUEST_SOURCE_BRANCH_NAME"
 
 trigger-job: 
   stage: trigger
   trigger:
     include: downstream/test.yml
   rules:
-    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: 'CI_MERGE_REQUEST_SOURCE_BRANCH_NAME'
       when: never
     - changes:
       -  test-dir/*
