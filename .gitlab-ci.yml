@@ -52,7 +52,7 @@ stages:
 Job-1:
   stage: build
   script:
-    - echo "Job 1"
+    - echo "$CI_PIPELINE_SOURCE"
 
 trigger-job: 
   stage: trigger
