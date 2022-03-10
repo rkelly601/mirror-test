@@ -58,8 +58,10 @@ trigger-job:
   stage: trigger
   trigger:
     include: downstream/test.yml
-  only:
-    changes:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: never
+    - changes:
       -  test-dir/*
 
   # needs:
