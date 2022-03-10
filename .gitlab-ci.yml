@@ -57,8 +57,7 @@ Job-1:
 trigger-job: 
   stage: trigger
   trigger:
-    include:
-      - local: downstream/test.yml
+    include: downstream/test.yml
   rules:
     - changes:
       -  test-dir/*
