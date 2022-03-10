@@ -7,7 +7,7 @@ stages:
 Job-1:
   stage: test
   script:
-    - echo "hello world!"
+    - echo "hello world"
   # needs:
   #   - project: $UPSTREAM_PROJECT
   #     ref: $UPSTREAM_REF
